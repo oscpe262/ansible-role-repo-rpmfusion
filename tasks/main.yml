@@ -1,5 +1,5 @@
 ## roles/ansible-role-repo-rpmfusion/tasks/main.yml
-# vim:ft=ansible:
+# vim:ft=yaml.ansible:
 ---
 - assert:
     that: '"Redhat" in ansible_os_family'
