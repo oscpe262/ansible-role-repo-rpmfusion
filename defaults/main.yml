@@ -1,0 +1,4 @@
+## roles/ansible-role-repo-rpmfusion/defaults/main.yml
+# vim:ft=ansible:
+---
+...
