@@ -2,23 +2,21 @@
 # vim:ft=yaml.ansible:
 ---
 - assert:
-    that: '"Redhat" in ansible_os_family'
+    that: '"RedHat" in ansible_os_family'
 
 - name: Install rpmfusion (Fedora)
   dnf:
-    name: '{{ item }}'
+    name:
+      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
+      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
     state: present
   when: '"Fedora" in ansible_distribution'
-  with_items:
-    - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
-    - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
 
 - name: Install rpmfusion (RHEL/CentOS)
   yum:
-    name: '{{ item }}'
+    name:
+      - https://download1.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+      - https://download1.rpmfusion.org/free/el/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
   when: '"Fedora" not in ansible_distribution'
-  with_items:
-    - https://download1.rpmfusion.org/free/el/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
-    - https://download1.rpmfusion.org/free/el/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
 ...
